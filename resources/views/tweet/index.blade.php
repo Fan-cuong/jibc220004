@@ -8,6 +8,8 @@
 </head>
 <body>
     <h1>view/tweet/index</h1>
+    <h1>view/tweet/index</h1>
+    <h1>view/tweet/index</h1>
     <div>
         <form action="{{route('tweet.create')}}" method="post">
         @csrf

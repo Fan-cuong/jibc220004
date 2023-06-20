@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>hdc</h1>
+    <h1>hdc</h1>
     <div>
         <a href="{{route('tweet.index')}}">戻る</a>
         <p>投稿フォーム</p>

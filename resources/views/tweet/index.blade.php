@@ -24,7 +24,14 @@
     </div>
     <div>
         @foreach ($tweets as $tweet)
-            <p>{{$tweet->content}}</p>
+            <details>
+                <summary>   
+                    <p>{{$tweet->content}}</p>
+                </summary>
+                <div>
+                    <a href="{{route('tweet.index',['tweetId=$tweet->id'])}}">ads</a>
+                </div>
+            </details>
         @endforeach
     </div>
 </body>

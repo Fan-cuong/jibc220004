@@ -6,16 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tweet;
 use App\Http\Requests\Tweet\UpdateRequest;
-
+use App\Services\TweetService;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class IndexController extends Controller
 {
-    public function c(Request $request){
+    public function c(Request $request, TweetService $tweetService){
         $tweetId = (int) $request->route('tweetId');
-        $tweets = Tweet::where('id',$tweetId)->firstOrFail();
-        return view('tweet.update')->with('tweets', $tweets);
-        //     if(is_null ($tweets)){
-        //         throw new NotFoundHttpException('存在しないつぶやきです。');
-        // }
+        if(!$tweetService->checkOwnTweet($request->user()->id, $tweetId)){
+            throw new AccessDeniedHttpException();
+        }
+        $tweet = Tweet::where('id',$tweetId)->firstOrFail();
+        return view('tweet.update')->with('tweet', $tweet);
     }
 }
+
